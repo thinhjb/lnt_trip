@@ -7,7 +7,6 @@ import android.widget.TextView;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-
 public class MainActivity extends AppCompatActivity implements OnClickListener  {
     final Calculator cal = new Calculator();
     @Override
@@ -98,11 +97,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener  
                 case R.id.buttonE:
                     cal.equal();
                     break;
-
             }
             TextView textView = (TextView) findViewById(R.id.my_text);
             textView.setText(cal.test());
-
         }
     };
 
