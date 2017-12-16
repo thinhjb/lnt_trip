@@ -8,14 +8,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 
-
-
-
 public class MainActivity extends AppCompatActivity implements OnClickListener  {
-    //Button button0,button1,button2,button3,button4,button5,button6,button7,button8,button9;
-    public int number1, number2;
     final Calculator cal = new Calculator();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +46,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener  
         AC.setOnClickListener(this);
         Button equal = (Button) findViewById(R.id.buttonE);
         equal.setOnClickListener(this);
-
-
-
     }
-
-//   private OnClickListener onClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             switch(v.getId()){
