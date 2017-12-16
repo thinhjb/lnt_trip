@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lnt_trip.iml" filepath="$PROJECT_DIR$/lnt_trip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lnt_trip.iml" filepath="$PROJECT_DIR$/.idea/lnt_trip.iml" />
+      <module fileurl="file://C:\Users\Luong\AndroidStudioProjects\lnt_trip\lnt_trip.iml" filepath="C:\Users\Luong\AndroidStudioProjects\lnt_trip\lnt_trip.iml" />
     </modules>
   </component>
 </project>
