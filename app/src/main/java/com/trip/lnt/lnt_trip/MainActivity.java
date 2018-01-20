@@ -7,13 +7,13 @@ import android.widget.TextView;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class MainActivity extends AppCompatActivity implements OnClickListener  {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
     final Calculator cal = new Calculator();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button zero = (Button) findViewById(R.id.button0);
+        Button zero = (Button) findViewById(R.id.button0);   //create buttons
         zero.setOnClickListener(this);
         Button one = (Button) findViewById(R.id.button1);
         one.setOnClickListener(this);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener  
         equal.setOnClickListener(this);
     }
         @Override
-        public void onClick(View v) {
+        public void onClick(View v) { //set button to calculator application
             switch(v.getId()){
                 case R.id.button0:
                     cal.input(0);
@@ -98,10 +98,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener  
                     cal.equal();
                     break;
             }
-            TextView textView = (TextView) findViewById(R.id.my_text);
+            TextView textView = (TextView) findViewById(R.id.my_text); //number display
             textView.setText(cal.test());
         }
-    };
+    }
 
 
 

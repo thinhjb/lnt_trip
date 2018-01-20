@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="false"
     tools:context="com.trip.lnt.lnt_trip.MainActivity">
 
     <TextView
@@ -12,9 +13,9 @@
         android:layout_height="50dp"
         android:layout_marginBottom="66dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:background="#33B7ff"
-        android:text="Hello World!"
+        android:text=""
         android:textAlignment="textEnd"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonD"
