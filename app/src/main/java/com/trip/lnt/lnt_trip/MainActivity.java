@@ -5,103 +5,104 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
-import android.view.View.OnClickListener;
 
-public class MainActivity extends AppCompatActivity implements OnClickListener {
-    final Calculator cal = new Calculator();
+public class MainActivity extends AppCompatActivity {
+    private Calculator mCal;
+    private Op mPrevOp;
+    private double mInput;
+
+    public void opBtnOnClick(View v) {
+        TextView output = findViewById(R.id.my_text); //number display
+
+        if (mPrevOp == Op.NONE)
+            mCal.reset(mInput);
+
+        switch (v.getId()) {
+            case R.id.buttonA:
+                if (mPrevOp != Op.NONE)
+                    mCal.add(mInput);
+
+                output.setText(Double.toString(mCal.getResult()));
+                mPrevOp = Op.ADD;
+                mInput = 0.0;
+                break;
+            case R.id.buttonS:
+                if (mPrevOp != Op.NONE)
+                    mCal.subtract(mInput);
+
+                output.setText(Double.toString(mCal.getResult()));
+                mPrevOp = Op.SUBTRACT;
+                mInput = 0.0;
+                break;
+            case R.id.buttonX:
+                if (mPrevOp != Op.NONE)
+                    mCal.multiply(mInput);
+
+                output.setText(Double.toString(mCal.getResult()));
+                mInput = 0.0;
+                mPrevOp = Op.MULTIPLY;
+                break;
+            case R.id.buttonD:
+                if (mPrevOp != Op.NONE)
+                    mCal.divide(mInput);
+
+                output.setText(Double.toString(mCal.getResult()));
+                mPrevOp = Op.DIVIDE;
+                mInput = 0.0;
+                break;
+            case R.id.buttonAC:
+                mCal.reset();
+                mInput = 0.0;
+                mPrevOp = Op.NONE;
+                output.setText(Double.toString(mInput));
+                break;
+            case R.id.buttonE:
+                mCal.eval(mPrevOp, mInput);
+                mInput = mCal.getResult();
+                mPrevOp = Op.NONE;
+                output.setText(Double.toString(mInput));
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void numBtnOnClick(View v) {
+        TextView output = findViewById(R.id.my_text); //number display
+        int num;
+
+        switch (v.getId()) {
+            case R.id.button0:
+            case R.id.button1:
+            case R.id.button2:
+            case R.id.button3:
+            case R.id.button4:
+            case R.id.button5:
+            case R.id.button6:
+            case R.id.button7:
+            case R.id.button8:
+            case R.id.button9:
+                Button btn = (Button) v;
+                num = Integer.parseInt(btn.getText().toString());
+
+                mInput *= 10;
+                mInput += num;
+                output.setText(Double.toString(mInput));
+                break;
+            default:
+                break;
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button zero = (Button) findViewById(R.id.button0);   //create buttons
-        zero.setOnClickListener(this);
-        Button one = (Button) findViewById(R.id.button1);
-        one.setOnClickListener(this);
-        Button two = (Button) findViewById(R.id.button2);
-        two.setOnClickListener(this);
-        Button three = (Button) findViewById(R.id.button3);
-        three.setOnClickListener(this);
-        Button four = (Button) findViewById(R.id.button4);
-        four.setOnClickListener(this);
-        Button five = (Button) findViewById(R.id.button5);
-        five.setOnClickListener(this);
-        Button six = (Button) findViewById(R.id.button6);
-        six.setOnClickListener(this);
-        Button seven = (Button) findViewById(R.id.button7);
-        seven.setOnClickListener(this);
-        Button eight = (Button) findViewById(R.id.button8);
-        eight.setOnClickListener(this);
-        Button nine = (Button) findViewById(R.id.button9);
-        nine.setOnClickListener(this);
-        Button add = (Button) findViewById(R.id.buttonA);
-        add.setOnClickListener(this);
-        Button subtract = (Button) findViewById(R.id.buttonS);
-        subtract.setOnClickListener(this);
-        Button multiply = (Button) findViewById(R.id.buttonX);
-        multiply.setOnClickListener(this);
-        Button divide = (Button) findViewById(R.id.buttonD);
-        divide.setOnClickListener(this);
-        Button AC = (Button) findViewById(R.id.buttonAC);
-        AC.setOnClickListener(this);
-        Button equal = (Button) findViewById(R.id.buttonE);
-        equal.setOnClickListener(this);
+
+        TextView output = findViewById(R.id.my_text); //number display
+        mCal = new Calculator();
+        mInput = 0.0;
+        mPrevOp = Op.NONE;
+
+        output.setText("0.0");
     }
-        @Override
-        public void onClick(View v) { //set button to calculator application
-            switch(v.getId()){
-                case R.id.button0:
-                    cal.input(0);
-                    break;
-                case R.id.button1:
-                    cal.input(1);
-                    break;
-                case R.id.button2:
-                    cal.input(2);
-                    break;
-                case R.id.button3:
-                    cal.input(3);
-                    break;
-                case R.id.button4:
-                    cal.input(4);
-                    break;
-                case R.id.button5:
-                    cal.input(5);
-                    break;
-                case R.id.button6:
-                    cal.input(6);
-                    break;
-                case R.id.button7:
-                    cal.input(7);
-                    break;
-                case R.id.button8:
-                    cal.input(8);
-                    break;
-                case R.id.button9:
-                    cal.input(9);
-                    break;
-                case R.id.buttonA:
-                    cal.add();
-                    break;
-                case R.id.buttonS:
-                    cal.subtract();
-                    break;
-                case R.id.buttonX:
-                    cal.multiply();
-                    break;
-                case R.id.buttonD:
-                    cal.divide();
-                    break;
-                case R.id.buttonAC:
-                    cal.reset();
-                    break;
-                case R.id.buttonE:
-                    cal.equal();
-                    break;
-            }
-            TextView textView = (TextView) findViewById(R.id.my_text); //number display
-            textView.setText(cal.test());
-        }
-    }
-
-
-
+}
